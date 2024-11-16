@@ -23,7 +23,12 @@
   font-size: 2em;
   line-height: 1;
   color: rgba(33, 33, 33, 1);
-
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-width: 420px;
 }
 
 .profile__description {
@@ -56,7 +61,7 @@
 }
 
 .profile__edit-button:hover {
-  color: rgba(33, 33, 33, 1);
+  opacity: 100%;
   cursor: pointer;
 }
 
