@@ -16,7 +16,7 @@ Desktop Screenshot 1 - https://drive.google.com/file/d/1CVeB4Q5GEFbUm2OtoZ1MWnfe
 Desktop Screenshot 2 - https://drive.google.com/file/d/1RioaLqjqh2BepAECVldlXSNCLv-70ube/view?usp=drive_link
 Mobile Screenshot 1 - https://drive.google.com/file/d/1RioaLqjqh2BepAECVldlXSNCLv-70ube/view?usp=drive_link
 
-Video - will be added after major issues are resolved
+Video - https://drive.google.com/file/d/18ovJtNgEtaTvuqbAT9RRXCfJDd75tPjB/view?usp=sharing
 
 ##### Link to GitHub Pages
 
