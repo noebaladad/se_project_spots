@@ -26,11 +26,10 @@ function getCardElement(data) {
   const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
   const cardNameEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
-  const cardAltText = cardElement.querySelector(".card__title");
 
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
-  cardAltText.textContent = data.name;
+  cardImageEl.alt = data.name;
 
   return cardElement;
 }
@@ -38,11 +37,11 @@ function getCardElement(data) {
 function openModal() {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
-  editModal.classList.add("modal__opened");
+  editModal.classList.add("modal_opened");
 }
 
 function closeModal() {
-  editModal.classList.remove("modal__opened");
+  editModal.classList.remove("modal_opened");
 }
 
 function handleProfileFormSubmit(evt) {
