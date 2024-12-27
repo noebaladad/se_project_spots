@@ -10,52 +10,92 @@ const initialCards = [
 console.log(initialCards);
 
 const profileEditButton = document.querySelector(".profile__edit-button");
+const cardModalButton = document.querySelector(".profile__new-post");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description")
 
 const editModal = document.querySelector("#edit-profile-modal");
-const editProfileFormElement = editModal.querySelector(".modal__form")
+const editProfileFormElement = editModal.querySelector(".modal__form");
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector("#profile-description-input");
 
+const cardModal = document.querySelector("#add-card-modal");
+const cardAddCardElement = cardModal.querySelector(".modal__form");
+const cardModalCloseButton = cardModal.querySelector(".modal__close-button");
+const cardModalLinkInput = cardModal.querySelector("#add-card-link-input");
+const cardModalCaptionInput = cardModal.querySelector("#add-card-name-input");
+
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
-function getCardElement(data) {
-  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
-  const cardNameEl = cardElement.querySelector(".card__title");
-  const cardImageEl = cardElement.querySelector(".card__image");
 
-  cardNameEl.textContent = data.name;
-  cardImageEl.src = data.link;
-  cardImageEl.alt = data.name;
 
-  return cardElement;
+function openModal(modal) {
+  modal.classList.add("modal_opened");
 }
 
-function openModal() {
-  editModalNameInput.value = profileName.textContent;
-  editModalDescriptionInput.value = profileDescription.textContent;
-  editModal.classList.add("modal_opened");
-}
-
-function closeModal() {
-  editModal.classList.remove("modal_opened");
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
 }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent =  editModalDescriptionInput.value;
-  closeModal();
+  closeModal(editModal);
 }
 
-profileEditButton.addEventListener("click", openModal);
-editModalCloseButton.addEventListener("click", closeModal);
-editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
-for (let i = 0; i < initialCards.length; i++) {
-  const cardElement = getCardElement(initialCards[i]);
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  const inputValues = {name: cardModalCaptionInput.value, link: cardModalLinkInput.value};
+  const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
+  closeModal(cardModal);
 }
+
+function getCardElement(data) {
+  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+  const cardNameEl = cardElement.querySelector(".card__title");
+  const cardImageEl = cardElement.querySelector(".card__image");
+  const cardLikeButton = cardElement.querySelector(".card__like-button");
+
+  cardNameEl.textContent = data.name;
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
+
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle("card__like-button_liked");
+
+  });
+
+  return cardElement;
+}
+
+profileEditButton.addEventListener("click", () => {
+  editModalNameInput.value = profileName.textContent;
+  editModalDescriptionInput.value = profileDescription.textContent;
+  openModal(editModal);
+});
+
+editModalCloseButton.addEventListener("click", () => {
+  closeModal(editModal);
+});
+
+cardModalButton.addEventListener("click", () => {
+  openModal(cardModal);
+});
+
+cardModalCloseButton.addEventListener("click", () => {
+  closeModal(cardModal);
+});
+
+editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
+cardAddCardElement.addEventListener("submit", handleAddCardSubmit);
+
+initialCards.forEach((item) => {
+  const cardElement = getCardElement(item);
+  cardsList.append(cardElement);
+  console.log(item)
+});
+
