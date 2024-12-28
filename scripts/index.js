@@ -5,6 +5,7 @@ const initialCards = [
   {name: "A very long bridge, over the forest", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg"},
   {name: "Tunnel with morning light", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg"},
   {name: "Mountain house", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"},
+  {name: "Golden Gate Bridge", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"},
 ];
 
 console.log(initialCards);
@@ -29,7 +30,10 @@ const cardModalCaptionInput = cardModal.querySelector("#add-card-name-input");
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
 
-
+const previewModal = document.querySelector("#preview-modal");
+const previewModalImageEl = previewModal.querySelector(".modal__image")
+const previewModalCaptionEl = previewModal.querySelector(".modal__caption")
+const previewModalCloseButton = previewModal.querySelector(".modal__close-button-preview");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -59,6 +63,8 @@ function getCardElement(data) {
   const cardNameEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardLikeButton = cardElement.querySelector(".card__like-button");
+  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+
 
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
@@ -66,7 +72,21 @@ function getCardElement(data) {
 
   cardLikeButton.addEventListener("click", () => {
     cardLikeButton.classList.toggle("card__like-button_liked");
+  });
 
+  cardDeleteButton.addEventListener("click", (evt) => {
+    evt.target.closest(".card").remove();
+  });
+
+  cardImageEl.addEventListener("click", () => {
+    openModal(previewModal);
+    previewModalImageEl.src = data.link;
+    previewModalCaptionEl.textContent = data.name;
+    previewModal.alt = data.name;
+  });
+
+  previewModalCloseButton.addEventListener("click", () => {
+    closeModal(previewModal);
   });
 
   return cardElement;
