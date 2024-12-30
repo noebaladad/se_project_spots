@@ -98,6 +98,10 @@ profileEditButton.addEventListener("click", () => {
   openModal(editModal);
 });
 
+previewModalCloseButton.addEventListener("click", () => {
+  closeModal(previewModal);
+});
+
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener('click', () => closePopup(popup));
