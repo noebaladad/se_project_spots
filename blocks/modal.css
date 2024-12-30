@@ -68,6 +68,11 @@
   opacity: 40%;
 }
 
+.modal__close-button:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
 .modal__close-button-preview {
   background-image: url(../images/preview_close-icon.svg);
   height: 40px;
@@ -139,6 +144,8 @@
 .modal__input:hover {
   opacity: 100%;
   cursor: pointer;
+  border: 1px solid rgba(33, 33, 33, 1);
+
 }
 
 .modal__submit-button {

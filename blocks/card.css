@@ -49,8 +49,9 @@
 }
 
 .card__like-button_liked {
-  background-image: url(../images/like-icon-liked.svg);
+  background-image: url(../images/like_button_liked.svg);
   opacity: 1;
+  background-color: transparent;
 }
 
 .card__like-button_liked:hover {
