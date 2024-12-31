@@ -98,18 +98,14 @@ profileEditButton.addEventListener("click", () => {
   openModal(editModal);
 });
 
-previewModalCloseButton.addEventListener("click", () => {
-  closeModal(previewModal);
-});
+
 
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
-  button.addEventListener('click', () => closePopup(popup));
+  button.addEventListener('click', () => closeModal(popup));
 });
 
-editModalCloseButton.addEventListener("click", () => {
-  closeModal(editModal);
-});
+
 
 cardModalButton.addEventListener("click", () => {
   openModal(cardModal);

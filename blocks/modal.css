@@ -172,6 +172,10 @@
     padding: 12px;
   }
 
+  .modal__content {
+    padding: 12px;
+  }
+
   .modal__title {
     font-size: 20px;
     margin-bottom: 24px;
