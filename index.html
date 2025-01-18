@@ -57,11 +57,30 @@
           <form id="edit-profile-form" class="modal__form">
             <label for="profile-name-input" class="modal__label">
               Name
-              <input id="profile-name-input" name="name" type="text" class="modal__input" placeholder="Type your name">
+              <input
+                id="profile-name-input"
+                name="name"
+                type="text"
+                class="modal__input"
+                placeholder="Type your name"
+                required
+                minlength="2"
+                maxlength="40"
+                />
+                <span class="modal__error">Please fill out this field.</span>
             </label>
             <label for="profile-description-input" class="modal__label">
               Description
-              <input id="profile-description-input" name="description" type="text" class="modal__input" placeholder="Describe yourself">
+              <input
+                id="profile-description-input"
+                name="description"
+                type="text"
+                class="modal__input"
+                placeholder="Describe yourself"
+                required
+                minlength="2"
+                maxlength="200"/>
+                <span class="modal__error">Please lengthen this text to 2 characters or more (you are currently usina 1 character).</span>
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
           </form>
@@ -82,7 +101,9 @@
                 type="url"
                 name="link"
                 class="modal__input"
-                placeholder="Paste a link to the picture">
+                placeholder="Paste a link to the picture"
+                required/>
+                <span class="modal__error">Please enter a URL.</span>
             </label>
             <label for="add-card-name-input" class="modal__label">
               Caption
@@ -91,7 +112,11 @@
                 type="text"
                 name="name"
                 class="modal__input"
-                placeholder="Type your caption">
+                placeholder="Type your caption"
+                required
+                minlength="2"
+                maxlength="30"/>
+                <span class="modal__error">Please fill out this field.</span>
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
           </form>
