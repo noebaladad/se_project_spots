@@ -40,19 +40,33 @@ const closeButtons = document.querySelectorAll(".modal__close");
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  modal.addEventListener("mousedown", handleModalOverlay);
+  document.addEventListener("keydown", modalEscClose);
+  modal.addEventListener("mousedown", modalOverlayClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  modal.removeEventListener("mousedown", handleModalOverlay);
+  document.removeEventListener("keydown", modalEscClose);
+  modal.removeEventListener("mousedown", modalOverlayClose);
+}
+function modalEscClose(evt) {
+  if (evt.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
+    closeModal(modal);
+  }
 }
 
-function handleModalOverlay(evt) {
+function modalOverlayClose(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
+}
+
+function modalOverlayClose(evt) {
   if (evt.target.classList.contains("modal_opened")) {
     closeModal(evt.target);
   }
-};
+}
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
