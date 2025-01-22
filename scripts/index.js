@@ -122,10 +122,7 @@ profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
   resetValidation(editProfileFormElement, [editModalNameInput, editModalDescriptionInput]
-    {
-      inputErrorClass: "modal__input_type_error",
-      errorClass: "modal__error_visible"
-    });
+    ,{inputErrorClass: "modal__input_type_error", errorClass: "modal__error_visible"});
 
   openModal(editModal);
 });
