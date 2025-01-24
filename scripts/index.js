@@ -62,11 +62,6 @@ function modalOverlayClose(evt) {
   }
 }
 
-function modalOverlayClose(evt) {
-  if (evt.target.classList.contains("modal_opened")) {
-    closeModal(evt.target);
-  }
-}
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -82,7 +77,7 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
   evt.target.reset();
   disableButton(cardSubmitButton, {
-    inactiveButtonClass: "modal__submit-button-disabled",
+    inactiveButtonClass: disableButton(cardSubmitButton, settings);
     });
   closeModal(cardModal);
 }
@@ -122,8 +117,7 @@ profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
   resetValidation(editProfileFormElement, [editModalNameInput, editModalDescriptionInput]
-    ,{inputErrorClass: "modal__input_type_error", errorClass: "modal__error_visible"});
-
+    , settings);
   openModal(editModal);
 });
 
