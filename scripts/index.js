@@ -1,5 +1,3 @@
-// I apologize that an error keeps popping up. I'm in Japan right now and the service doesn't seem to work properly sometimes without a VPN.
-
 const initialCards = [
   {name: "Val Thorens", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"},
   {name: "Restaurant terrace", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg"},
@@ -79,7 +77,7 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
   evt.target.reset();
   disableButton(cardSubmitButton, {
-    inactiveButtonClass: disableButton(cardSubmitButton, settings);
+    inactiveButtonClass: disableButton(cardSubmitButton, settings)
     });
   closeModal(cardModal);
 }
