@@ -48,7 +48,7 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", modalEscClose);
   modal.removeEventListener("mousedown", modalOverlayClose);
-}''
+}
 function modalEscClose(evt) {
   if (evt.key === "Escape") {
     const modal = document.querySelector(".modal_opened");
@@ -76,9 +76,7 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
   evt.target.reset();
-  disableButton(cardSubmitButton, {
-    inactiveButtonClass: disableButton(cardSubmitButton, settings)
-    });
+  disableButton(cardSubmitButton, settings);
   closeModal(cardModal);
 }
 
