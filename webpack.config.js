@@ -41,8 +41,10 @@ module.exports = {
           },
         ],
       },
-
-      // NEW
+      {
+        test: /\.svg$/, // Add this rule for SVGs
+        use: "file-loader", // or 'url-loader' if you prefer
+      },
       {
         test: /\.(png|svg|jpg|jpeg|webp|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
