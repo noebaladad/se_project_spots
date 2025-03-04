@@ -1,3 +1,12 @@
+import "./index.css";
+
+import { enableValidation, settings } from "../scripts/validation.js";
+
+import spotsSrc from "./images/spots_logo.svg"
+
+const spotsLogo = document.getElementById("spots-logo");
+spotsLogo.src = spotsSrc;
+
 const initialCards = [
   {name: "Val Thorens", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"},
   {name: "Restaurant terrace", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg"},
@@ -139,3 +148,4 @@ initialCards.forEach((item) => {
   console.log(item)
 });
 
+enableValidation(settings);

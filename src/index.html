@@ -8,12 +8,11 @@
     <meta name="author" content="Noe Baladad" />
     <title>Spots</title>
     <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/spots_logo.svg" alt="Spots Logo" class="header__logo">
+        <img id="spots-logo" alt="Spots Logo" class="header__logo" src="<%= require('./images/spots_logo.svg')%>"
       </header>
       <main class="content">
         <section class="profile page__section">
@@ -131,8 +130,5 @@
         <p class="modal__caption"></p>
       </div>
     </div>
-
-    <script defer src="./scripts/index.js"></script>
-    <script defer src="./scripts/validation.js"></script>
   </body>
 </html>
