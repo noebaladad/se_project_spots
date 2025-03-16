@@ -1,6 +1,7 @@
 import "./index.css";
 
 import { enableValidation, settings } from "../scripts/validation.js";
+import Api from "../scripts/Api.js";
 
 const initialCards = [
   {name: "Val Thorens", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"},
@@ -11,6 +12,19 @@ const initialCards = [
   {name: "Mountain house", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"},
   {name: "Golden Gate Bridge", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"},
 ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "ea7dc041-453a-47d1-92f9-2ec7e3393acf",
+    "Content-Type": "application/json"
+  }
+});
+
+api.getInitialCards().then((cards) => {
+  console.log(cards);
+})
+
 
 console.log(initialCards);
 
