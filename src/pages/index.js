@@ -32,7 +32,7 @@ api
       cardsList.prepend(cardElement);
     });
     if (userInfo && userInfo.name && userInfo.about) {
-      const avatarImage = document.querySelector(".avatar");
+      const avatarImage = document.querySelector("#avatar");
       avatarImage.src = userInfo.avatar;
 
       const userName = document.querySelector(".profile__name");
@@ -135,10 +135,6 @@ function modalOverlayClose(evt) {
     closeModal(evt.target);
   }
 }
-
-modalEscClose.forEach((modal) => {
-  modal.addEventListener("mousedown", closeOverlay);
-});
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
