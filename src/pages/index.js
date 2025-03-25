@@ -1,6 +1,6 @@
 import "./index.css";
 
-import { enableValidation, settings } from "../scripts/validation.js";
+import { resetValidation, enableValidation, settings } from "../scripts/validation.js";
 import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
@@ -52,7 +52,7 @@ console.log(initialCards);
 // Profile elements
 const profileEditButton = document.querySelector(".profile__edit-button");
 const cardModalButton = document.querySelector(".profile__new-post");
-const avatarModalButton = document.querySelector("profile__avatar-button");
+const avatarModalButton = document.querySelector(".profile__avatar-button");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description")
 
@@ -72,7 +72,7 @@ const cardModalLinkInput = cardModal.querySelector("#add-card-link-input");
 const cardModalCaptionInput = cardModal.querySelector("#add-card-name-input");
 
 // Avatar form element
-const avatarModal = document.querySelector("#add-card-modal");
+const avatarModal = document.querySelector("#edit-avatar-modal");
 const avatarFormElement = avatarModal.querySelector(".modal__form");
 const avatarModalCloseButton = avatarModal.querySelector(".modal__close-button");
 const avatarSubmitButton = avatarModal.querySelector(".modal__submit-button");
@@ -157,43 +157,46 @@ function handleEditFormSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      submitButton.textContent = "Save";
-      setButtonText(cardSubmitButton, false);
-    });
-
-  profileEditButton.addEventListener("click", () => {
-    editModalNameInput.value = profileName.textContent;
-    editModalDescriptionInput.value = profileDescription.textContent;
-    resetValidation(editProfileFormElement, [editModalNameInput, editModalDescriptionInput]
-      , settings);
-    openModal(editModal);
-  });
-
-  closeButtons.forEach((button) => {
-    const popup = button.closest(".modal");
-    button.addEventListener('click', () => closeModal(popup));
-  });
-
-  cardModalButton.addEventListener("click", () => {
-    openModal(cardModal);
-  });
-
-  editProfileFormElement.addEventListener("submit", handleEditFormSubmit);
-  cardFormElement.addEventListener("submit", handleAddCardSubmit);
-
-  avatarModalButton.addEventListener("click", () => {
-    openModal(avatarModal);
-  });
-
-  avatarModalCloseButton.addEventListener("click", () => {
-    closeModal(avatarModal);
-  });
-
-  avatarFormElement.addEventListener("submit", handleAvatarSubmit);
-
-  deleteFormElement.addEventListener("submit", handleDeleteSubmit);
-
+        submitButton.textContent = "Save";
+        setButtonText(cardSubmitButton, false);
+      });
 }
+
+profileEditButton.addEventListener("click", () => {
+  console.log("Edit button clicked");
+  editModalNameInput.value = profileName.textContent;
+  editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(editProfileFormElement, [editModalNameInput, editModalDescriptionInput]
+    , settings);
+  openModal(editModal);
+});
+
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener('click', () => closeModal(popup));
+});
+
+cardModalButton.addEventListener("click", () => {
+  openModal(cardModal);
+});
+
+editProfileFormElement.addEventListener("submit", handleEditFormSubmit);
+console.log(editProfileFormElement);
+
+cardFormElement.addEventListener("submit", handleAddCardSubmit);
+
+avatarModalButton.addEventListener("click", () => {
+  openModal(avatarModal);
+});
+
+avatarModalCloseButton.addEventListener("click", () => {
+  closeModal(avatarModal);
+});
+
+avatarFormElement.addEventListener("submit", handleAvatarSubmit);
+
+deleteFormElement.addEventListener("submit", handleDeleteSubmit);
+
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
   const inputValues = {name: cardModalCaptionInput.value, link: cardModalLinkInput.value};
