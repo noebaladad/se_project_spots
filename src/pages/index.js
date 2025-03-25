@@ -4,6 +4,8 @@ import { enableValidation, settings } from "../scripts/validation.js";
 import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
+import userInfo.avatar from "../images/Avatar.svg";
+
 const initialCards = [
   {name: "Val Thorens", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg"},
   {name: "Restaurant terrace", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg"},
@@ -13,6 +15,7 @@ const initialCards = [
   {name: "Mountain house", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg"},
   {name: "Golden Gate Bridge", link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg"},
 ];
+
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -72,9 +75,9 @@ const cardModalCaptionInput = cardModal.querySelector("#add-card-name-input");
 
 // Avatar form element
 const avatarModal = document.querySelector("#add-card-modal");
-const avatarFormElement = avatarModalModal.querySelector(".modal__form");
-const avatarModalCloseButton = avatarModalModal.querySelector(".modal__close-button");
-const avatarSubmitButton = avatarModalModal.querySelector(".modal__submit-button");
+const avatarFormElement = avatarModal.querySelector(".modal__form");
+const avatarModalCloseButton = avatarModal.querySelector(".modal__close-button");
+const avatarSubmitButton = avatarModal.querySelector(".modal__submit-button");
 const avatarInput = avatarModal.querySelector("#profile-avatar-input")
 
 // card related elements
@@ -121,6 +124,7 @@ function closeModal(modal) {
   document.removeEventListener("keydown", modalEscClose);
   modal.removeEventListener("mousedown", modalOverlayClose);
 }
+
 function modalEscClose(evt) {
   if (evt.key === "Escape") {
     const modal = document.querySelector(".modal_opened");
@@ -134,11 +138,15 @@ function modalOverlayClose(evt) {
   }
 }
 
-function handleProfileFormSubmit(evt) {
+modalEscClose.forEach((modal) => {
+  modal.addEventListener("mousedown", closeOverlay);
+});
+
+function handleEditFormSubmit(evt) {
   evt.preventDefault();
 
   const submitButton = evt.submitter;
-  // submitButton.textContent = "Saving...";
+
   setButtonText(submitButton, true, "Save", "Saving...");
 
   const updatedUserInfo = {
@@ -176,7 +184,7 @@ function handleProfileFormSubmit(evt) {
     openModal(cardModal);
   });
 
-  editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
+  editProfileFormElement.addEventListener("submit", handleEditFormSubmit);
   cardFormElement.addEventListener("submit", handleAddCardSubmit);
 
   avatarModalButton.addEventListener("click", () => {
