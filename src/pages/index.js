@@ -82,7 +82,7 @@ const cardsList = document.querySelector(".cards__list");
 
 // Delete elements
 const deleteModal = document.querySelector("#delete-modal");
-const deleteFormElement = document.querySelector(".modal__form");
+const deleteFormElement = document.querySelector("#delete-form");
 
 // Preview image popup elements
 const previewModal = document.querySelector("#preview-modal");
@@ -166,7 +166,7 @@ function handleEditFormSubmit(evt) {
       , settings);
     openModal(editModal);
   });
-
+} 
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener('click', () => closeModal(popup));
@@ -270,18 +270,18 @@ function getCardElement(data) {
   return cardElement;
 }
 
-function handleDeleteCard(cardElement, cardId, cardDeleteButton) {
-  deleteModal.dataset.cardId = cardElement.id;
+function handleDeleteCard(cardElement, cardId) {
+  selectedCard = cardElement;
+  deleteModal.dataset.cardId = cardId;
   openModal(deleteModal);
 }
 
 function handleDeleteSubmit(evt) {
   evt.preventDefault();
-  const deleteModal = document.querySelector('.modal_type_delete-card');
+  
   const deleteButton = deleteModal.querySelector('.modal__submit-button');
   const cardId = deleteModal.dataset.cardId;
-  const cardToDelete = document.getElementById(cardId);
-  
+
   setButtonText(deleteButton, true, "Yes", "Deleting...");
   
   api.deleteCard(cardId)
@@ -291,6 +291,7 @@ function handleDeleteSubmit(evt) {
       closeModal(deleteModal);
     })
     .catch((err) => {
+      console.error("Delete failed:", err);
     })
     .finally(() => {
       setButtonText(deleteButton, false, "Yes", "Deleting...");
