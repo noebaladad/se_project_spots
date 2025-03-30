@@ -13,6 +13,7 @@
   visibility: hidden;
   opacity:0;
   transition: 0s linear 0.5s, 0.5s linear;
+  font-family: "Poppins", Arial, sans-serif;
 }
 
 .modal_opened {
@@ -258,15 +259,21 @@
 
   .modal__content {
     padding: 12px;
-    margin: 0 16px;
+    margin: 0px;
     width: 300px;
   }
 
+  .modal__form_confirm {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    gap: 8px;
+  }
+
   .modal__content_confirm {
-    width:300px;
+    width: 300px;
     height: 208px;
-    padding: 20px 60px 12px;
-    gap: 12px;
+    gap: 20px;
   }
 
   .modal__title {
@@ -279,6 +286,7 @@
   .modal__title_confirm {
     font-size: 20px;
     margin: 0;
+    padding: 0;
   }
 
   .modal__image {
@@ -305,18 +313,14 @@
 
   .modal__submit-button {
     width: 100%;
+    margin: 0;
   }
 
-  .modal__submit-button_delete {
+  .modal__submit-button_delete, .modal__submit-button_cancel {
+    width: 156px;
     padding: 18px 32px;
-    margin: 20px 0px 8px;
-  }
-
-  .modal__submit-button_cancel {
     font-size: 16px;
     font-weight: 500;
-    padding: 18px 32px;
-    margin-bottom: 12px;
   }
 
   .modal__caption {

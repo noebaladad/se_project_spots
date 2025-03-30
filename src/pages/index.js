@@ -1,6 +1,6 @@
 import "./index.css";
 
-import { resetValidation, enableValidation, settings } from "../scripts/validation.js";
+import { resetValidation, enableValidation, settings, disableButton } from "../scripts/validation.js";
 import { setButtonText } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
 
@@ -156,17 +156,18 @@ function handleEditFormSubmit(evt) {
     .catch(console.error)
     .finally(() => {
       submitButton.textContent = "Save";
-      setButtonText(cardSubmitButton, false);
+     // setButtonText(cardSubmitButton, false);
     });
-
-  profileEditButton.addEventListener("click", () => {
-    editModalNameInput.value = profileName.textContent;
-    editModalDescriptionInput.value = profileDescription.textContent;
-    resetValidation(editProfileFormElement, [editModalNameInput, editModalDescriptionInput]
-      , settings);
-    openModal(editModal);
-  });
 } 
+
+profileEditButton.addEventListener("click", () => {
+  editModalNameInput.value = profileName.textContent;
+  editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(editProfileFormElement, [editModalNameInput, editModalDescriptionInput]
+    , settings);
+  openModal(editModal);
+});
+
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
   button.addEventListener('click', () => closeModal(popup));
@@ -183,13 +184,18 @@ avatarModalButton.addEventListener("click", () => {
   openModal(avatarModal);
 });
 
-  avatarModalCloseButton.addEventListener("click", () => {
-    closeModal(avatarModal);
-  });
+avatarModalCloseButton.addEventListener("click", () => {
+  closeModal(avatarModal);
+});
 
 avatarFormElement.addEventListener("submit", handleAvatarSubmit);
 
 deleteFormElement.addEventListener("submit", handleDeleteSubmit);
+
+const deleteModalCancelButton = deleteModal.querySelector(".modal__submit-button_cancel");
+deleteModalCancelButton.addEventListener("click", () => {
+  closeModal(deleteModal);
+});
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
@@ -215,21 +221,21 @@ function handleAddCardSubmit(evt) {
     })
     .finally(() => {
       setButtonText(submitButton, false, "Create", "Creating...");
+      const buttonElement = cardFormElement.querySelector(settings.submitButtonSelector);
+      disableButton(buttonElement, settings);
     });
 }
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
-  const submitButton = avatarFormElement.querySelector(".modal__button");
+  const submitButton = avatarFormElement.querySelector(".modal__submit-button");
   setButtonText(submitButton, true, "Save", "Saving...");
 
   api
-    .editAvatarInfo(avatarInput.value)
+    .editAvatarInfo({ avatar: avatarInput.value })
     .then((data) => {
-      const avatarImage = document.querySelector(".profile__avatar");
+      const avatarImage = document.querySelector("#avatar");
         avatarImage.src = data.avatar;
-        setButtonText(avatarSubmitButton, false);
-
         closeModal(avatarModal);
     })
     .catch(console.error)
